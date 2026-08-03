@@ -9,7 +9,6 @@ import (
 	"github.com/swampPr/mina-font/internal/font"
 )
 
-// listCmd represents the list command
 var listCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List all available fonts",
