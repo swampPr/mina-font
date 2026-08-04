@@ -36,6 +36,6 @@ func Execute() {
 }
 
 func init() {
-	rootCmd.Flags().StringP("font", "f", " ", "The FIGlet font to use")
-	rootCmd.Flags().StringP("text", "t", " ", "The text to use")
+	rootCmd.Flags().StringP("font", "f", "ascii", "The FIGlet font to use")
+	rootCmd.Flags().StringP("text", "t", "HELLO WORLD", "The text to use")
 }
