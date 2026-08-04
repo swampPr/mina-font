@@ -1,23 +1,23 @@
-// Package font provides   INFO:  Handles loading font file and building the ascii string
+// Package font provides   INFO:  Handles loading font file and finding all available fonts
 package font
 
 import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"path/filepath"
 	"slices"
 	"strings"
 
 	"github.com/fatih/color"
+
+	"github.com/swampPr/mina-font/assets"
 )
 
 // LoadFontFile function  INFO:  Validates the inputted font name, Loads the font file into memory and returns it
 func LoadFontFile(name string) (map[string][]string, error) {
 	var font map[string][]string
 
-	fontsDir := filepath.Join("fonts")
-	availableFonts, err := FindAvailable(fontsDir)
+	availableFonts, err := FindAvailable()
 	if err != nil {
 		return nil, err
 	}
@@ -27,9 +27,8 @@ func LoadFontFile(name string) (map[string][]string, error) {
 		os.Exit(1)
 	}
 
-	fileName := fmt.Sprintf("%s.json", name)
-	fontPath := filepath.Join(fontsDir, fileName)
-	data, err := os.ReadFile(fontPath) //#nosec
+	fontPath := fmt.Sprintf("fonts/%s.json", name)
+	data, err := assets.Fonts.ReadFile(fontPath) //#nosec
 	if err != nil {
 		return nil, err
 	}
@@ -43,8 +42,8 @@ func LoadFontFile(name string) (map[string][]string, error) {
 }
 
 // FindAvailable function  INFO:  Gets all available fonts in the fonts dir
-func FindAvailable(dir string) ([]string, error) {
-	entries, err := os.ReadDir(dir)
+func FindAvailable() ([]string, error) {
+	entries, err := assets.Fonts.ReadDir("fonts")
 	if err != nil {
 		return nil, err
 	}
