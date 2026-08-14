@@ -3,8 +3,7 @@
 ## A simple program that turns basic text into cute ASCII art
 
 ### Requirements:
-- Have [Go](go.dev) installed
-
+- Have [Go](https://go.dev) installed
 ### Project Setup:
 
 
